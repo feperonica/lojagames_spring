@@ -1,5 +1,6 @@
 package com.generation.lojagames.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,16 @@ public class ProdutoController {
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
         return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
+    }
+    
+    @GetMapping("/preco-maior/{preco}")
+    public ResponseEntity<List<Produto>> getByPrecoMaior(@PathVariable BigDecimal preco) {
+        return ResponseEntity.ok(produtoRepository.findAllByPrecoGreaterThan(preco));
+    }
+    
+    @GetMapping("/preco-menor/{preco}")
+    public ResponseEntity<List<Produto>> getByPrecoMenor(@PathVariable BigDecimal preco) {
+        return ResponseEntity.ok(produtoRepository.findAllByPrecoLessThan(preco));
     }
 
     @PostMapping

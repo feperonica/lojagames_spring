@@ -8,4 +8,10 @@ import com.generation.lojagames.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
     List<Produto> findAllByNomeContainingIgnoreCase(String nome);
+    
+ // Listar produtos com preço maior que o valor informado
+    List<Produto> findAllByPrecoGreaterThan(BigDecimal preco);
+
+    // Listar produtos com preço menor que o valor informado
+    List<Produto> findAllByPrecoLessThan(BigDecimal preco);
 }
